@@ -1,11 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Topbar from "../components/Topbar/Topbar";
 import classes from "./MainContainer.module.css";
+import axios from "../axios";
 
 const MainContainer = (props) => {
   const [sidebarElements, setSidebarElements] = useState([]);
   const [segments, setSegments] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`/${props.videoId}/contexts`)
+      .then((res) => setSidebarElements(res.data.map((e) => e.context)))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className={classes.Container}>
