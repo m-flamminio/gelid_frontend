@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Topbar from "../components/Topbar/Topbar";
 import classes from "./MainContainer.module.css";
 
 const MainContainer = (props) => {
@@ -8,6 +9,7 @@ const MainContainer = (props) => {
   return (
     <div className={classes.Container}>
       <div className={classes.Topbar}>
+        <Topbar/>
       </div>
       <div className={classes.Sidebar}>
       </div>
