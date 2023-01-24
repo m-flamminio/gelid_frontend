@@ -21,7 +21,7 @@ const MainContainer = (props) => {
         <Topbar />
       </div>
       <div className={classes.Sidebar}>
-        <Sidebar elements={sidebarElements} />
+        <Sidebar videoId={props.videoId} elements={sidebarElements} />
       </div>
       <div className={classes.SegmentsContainer}></div>
     </div>
