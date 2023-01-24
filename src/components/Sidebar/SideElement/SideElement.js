@@ -16,7 +16,7 @@ const SideElement = (props) => {
   }, []);
 
   const issueItems = issues.map((issue) => (
-    <ListGroup.Item style={{ cursor: "pointer" }} key={issue.id}>
+    <ListGroup.Item style={{ cursor: "pointer" }} key={issue.id} onClick={() => props.updateSegments(props.id, issue.id)} >
       {issue.name}
     </ListGroup.Item>
   ));

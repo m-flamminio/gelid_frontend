@@ -1,0 +1,10 @@
+.Segment {
+    max-width: 50vw;
+    width: 100%;
+}
+
+.Card {
+    margin-bottom: 5px;
+    justify-content: center;
+    text-align: center;
+}
