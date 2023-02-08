@@ -6,7 +6,7 @@ const SegmentCard = (props) => {
 
   return (
     <Card className={classes.Card} >
-      <Card.Header as="h5">{props.issueType}</Card.Header>
+      <Card.Header as="h5">{props.issue.name}</Card.Header>
       <Card.Body>
         <Card.Text></Card.Text>
         <video

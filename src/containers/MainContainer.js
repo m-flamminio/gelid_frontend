@@ -16,10 +16,10 @@ const MainContainer = (props) => {
       .catch((err) => console.log(err));
   }, []);
 
-  let updateSegments = (contextId, issueId) => {
+  let updateSegments = (contextId, issueType) => {
     axios
       .get(
-        `${props.videoId}/segments?contextId=${contextId}&issueId=${issueId}`
+        `${props.videoId}/segments?contextId=${contextId}&issueType=${issueType}`
       )
       .then((res) => setSegments(res.data))
       .catch((err) => console.log(err));

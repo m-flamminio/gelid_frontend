@@ -11,13 +11,13 @@ const SideElement = (props) => {
   useEffect(() => {
     axios
       .get(`${props.videoId}/contexts/${props.id}/issues`)
-      .then((res) => setIssues(res.data.map((data) => data.issue)))
+      .then((res) => setIssues(res.data))
       .catch((err) => console.log(err));
   }, []);
 
-  const issueItems = issues.map((issue) => (
-    <ListGroup.Item style={{ cursor: "pointer" }} key={issue.id} onClick={() => props.updateSegments(props.id, issue.id)} >
-      {issue.name}
+  const issueItems = issues.map((issue, index) => (
+    <ListGroup.Item style={{ cursor: "pointer" }} key={index} onClick={() => props.updateSegments(props.id, issue.issueType)} >
+      {issue.issueType}
     </ListGroup.Item>
   ));
 
