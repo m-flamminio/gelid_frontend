@@ -1,1 +1,40 @@
 @import "~bootstrap/scss/bootstrap";
+
+
+$first:  #abd4e4; 
+$second:  #2b2b2c; 
+$third:  #BBBBBB; 
+$fourth:  #cdd1d3; 
+
+.accordion {
+    --bs-accordion-bg: $second;
+}
+
+.bg-dark {
+    background-color: $second;
+}
+
+.accordion-button {
+    &:not(.collapsed) {
+        background-color: lighten($second,20%);
+        color: $fourth;
+    }
+    &:focus {
+        box-shadow: none;
+    }
+    color: $fourth;
+    background-color: lighten($second,3%)
+}
+
+.list-group-item {
+    background-color: $third;
+    color: $second;
+}
+
+.background {
+    background-color: $third;
+}
+
+.topbar {
+    background-color: darken($third,60%);
+}
