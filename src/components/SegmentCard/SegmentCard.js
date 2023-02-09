@@ -1,4 +1,3 @@
-import { Card } from "react-bootstrap";
 import classes from "./SegmentCard.module.css";
 
 const SegmentCard = (props) => {
@@ -14,10 +13,17 @@ const SegmentCard = (props) => {
           controls
         ></video>
         <ul className={classes.Infos}>
-          <li>Minutaggio: 2:15</li>
-          <li>Origine: {props.video.name}</li>
-          <li>Secondo inizio: 10s</li>
-          <li>Secondo fine: 16s</li>
+          <li>Origine: {props.video.title}</li>
+          <li
+            style={{ cursor: "pointer" }}
+            onClick={() =>
+              window.open(props.video.url + "&t=" + props.startSecond, "_blank")
+            }
+          >
+            Url
+          </li>
+          <li>Secondo inizio: {props.startSecond} s</li>
+          <li>Secondo fine: {props.endSecond} s</li>
         </ul>
       </div>
     </div>
