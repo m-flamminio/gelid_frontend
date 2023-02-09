@@ -17,6 +17,7 @@
     margin-bottom: 7px;
     max-width: 50vw;
     background-color: #afafaf;
+    animation: inAnimation 300ms ease-in;
 }
 
 .Body {
@@ -40,4 +41,15 @@
     grid-row: 2 / 4;
     text-align: left;
     font-size: 20px;
+}
+
+@keyframes inAnimation {
+    0% {
+      opacity: 0;
+      visibility: hidden;
+    }
+    100% {
+      opacity: 1;
+      visibility: visible;
+    }
 }
