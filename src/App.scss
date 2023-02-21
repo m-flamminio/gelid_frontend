@@ -16,7 +16,7 @@ $fourth:  #cdd1d3;
 
 .accordion-button {
     &:not(.collapsed) {
-        background-color: lighten($second,20%);
+        background-color: lighten($second,15%);
         color: $fourth;
     }
     &:focus {

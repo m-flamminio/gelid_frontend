@@ -2,7 +2,6 @@
     grid-column: 1;
     grid-row: 1 / 4;
     margin: auto;
-    max-width: 40vw;
     width: 100%;
     border-radius: 15px;
 }
@@ -15,14 +14,14 @@
     box-sizing: border-box;
     margin: auto;
     margin-bottom: 7px;
-    max-width: 50vw;
+    max-width: 1100px;
     background-color: #afafaf;
     animation: inAnimation 300ms ease-in;
 }
 
 .Body {
     display: grid;
-    grid-template: 3.5rem auto / 30vw 1fr;
+    grid-template: 3.5rem auto / 2fr 1fr;
     padding: 5px 5px;
     gap: 10px;
 }
@@ -38,9 +37,16 @@
 
 .Infos {
     grid-column: 2;
-    grid-row: 2 / 4;
+    grid-row: 2;
     text-align: left;
     font-size: 20px;
+}
+
+.Button {
+    grid-row-start: 3;
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
 }
 
 @keyframes inAnimation {
@@ -51,5 +57,19 @@
     100% {
       opacity: 1;
       visibility: visible;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .Card {
+        max-width: 80vw;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .Body {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
     }
 }

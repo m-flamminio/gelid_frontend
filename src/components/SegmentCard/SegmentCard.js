@@ -1,7 +1,11 @@
+import { Button } from "react-bootstrap";
 import classes from "./SegmentCard.module.css";
 
 const SegmentCard = (props) => {
-  console.log(props.baseUrl + `/${props.id}`);
+
+  let clusterButton = null
+  if (props.showCluster)
+    clusterButton = <Button className={classes.Button} onClick={() => props.showCluster(props.issue.id)}>Visualizza cluster</Button>
 
   return (
     <div className={classes.Card}>
@@ -25,6 +29,7 @@ const SegmentCard = (props) => {
           <li>Secondo inizio: {props.startSecond} s</li>
           <li>Secondo fine: {props.endSecond} s</li>
         </ul>
+        {clusterButton}
       </div>
     </div>
   );
