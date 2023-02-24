@@ -39,7 +39,7 @@ const MainContainer = (props) => {
         `${props.videoId}/segments?contextId=${contextId}&issueType=${issueType}`
       )
       .then((res) => {
-        setClusters(groupBy(res.data, (seg) => seg.issue.id));
+        setClusters(groupBy(res.data, (seg) => seg.issue ? seg.issue.id : -1));
       })
       .catch((err) => console.log(err));
   };

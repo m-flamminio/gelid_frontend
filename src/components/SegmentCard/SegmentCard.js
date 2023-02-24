@@ -4,13 +4,15 @@ import classes from "./SegmentCard.module.css";
 const SegmentCard = (props) => {
 
   let clusterButton = null
-  if (props.showCluster)
+  if (props.showCluster && props.issue)
     clusterButton = <Button className={classes.Button} onClick={() => props.showCluster(props.issue.id)}>Visualizza cluster</Button>
+
+  let title = props.issue ? props.issue.name : "Bug"
 
   return (
     <div className={classes.Card}>
       <div className={classes.Body}>
-        <h5 className={classes.Title}>{props.issue.name}</h5>
+        <h5 className={classes.Title}>{title}</h5>
         <video
           className={classes.Segment}
           src={props.baseUrl + `/segments/${props.id}`}
