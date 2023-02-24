@@ -14,7 +14,7 @@ const MainContainer = (props) => {
 
   useEffect(() => {
     axios
-      .get(`/${props.videoId}/contexts`)
+      .get(`video/${props.videoId}/contexts`)
       .then((res) => setSidebarElements(res.data.map((e) => e.context)))
       .catch((err) => console.log(err));
   }, []);
@@ -36,7 +36,7 @@ const MainContainer = (props) => {
   let updateSegments = (contextId, issueType) => {
     axios
       .get(
-        `${props.videoId}/segments?contextId=${contextId}&issueType=${issueType}`
+        `video/${props.videoId}/segments?contextId=${contextId}&issueType=${issueType}`
       )
       .then((res) => {
         setClusters(groupBy(res.data, (seg) => seg.issue ? seg.issue.id : -1));
@@ -53,7 +53,7 @@ const MainContainer = (props) => {
     segmentsElement.push(
       <SegmentCard
         key={key}
-        baseUrl={axios.defaults.baseURL + props.videoId}
+        baseUrl={axios.defaults.baseURL + "video/" + props.videoId}
         {...value[0]}
         showCluster={toggleClusterSegments}
       />
@@ -66,7 +66,7 @@ const MainContainer = (props) => {
       <>
         <Backdrop onClick={toggleClusterSegments} />
         <ClusterContainer
-          baseUrl={axios.defaults.baseURL + props.videoId}
+          baseUrl={axios.defaults.baseURL + "video/" + props.videoId}
           segments={clusters.get(showClusterId)}
         />
       </>

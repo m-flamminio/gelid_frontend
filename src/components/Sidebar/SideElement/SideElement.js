@@ -10,7 +10,7 @@ const SideElement = (props) => {
 
   useEffect(() => {
     axios
-      .get(`${props.videoId}/contexts/${props.id}/issues`)
+      .get(`video/${props.videoId}/contexts/${props.id}/issues`)
       .then((res) => setIssues(res.data))
       .catch((err) => console.log(err));
   }, []);
