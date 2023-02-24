@@ -3,7 +3,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import LoginPage from "./containers/LoginPage/LoginPage";
 import MainContainer from "./containers/MainContainer";
-import axios from "./axios";
 
 function App(props) {
   const [isAuth, setIsAuth] = useState(false);
@@ -14,20 +13,9 @@ function App(props) {
 
   let redirect = isAuth ? "/home" : "/login";
 
-  let handleAuth = (username, password) => {
-    const searchParam = new URLSearchParams({
-      username: username,
-      password: password,
-    });
-
-    axios
-      .get("users?" + searchParam)
-      .then((res) => {
-        const auth = res.data
-        setIsAuth(auth);
-        props.cookies.set("isAuth", auth, { path: "/", sameSite: "lax" });
-      })
-      .catch((err) => console.log(err));
+  let handleAuth = (auth) => {
+    setIsAuth(auth);
+    props.cookies.set("isAuth", auth, { path: "/", sameSite: "lax" });
   };
 
   return (
