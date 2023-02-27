@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FloatingLabel } from "react-bootstrap";
+import { Row, FloatingLabel } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "../../axios";
@@ -8,26 +8,47 @@ const LoginForm = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isInvalid, setIsInvalid] = useState(false);
+  const [isRegister, setIsRegister] = useState(false);
 
-  const handleLogin = () => {
+  const handleRes = (res) => {
+    const auth = res.data;
+    if (!auth) setIsInvalid(true);
+    else props.onAuth(auth);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
     const searchParam = new URLSearchParams({
       username: username,
       password: password,
     });
 
-    axios
-      .get("users?" + searchParam)
-      .then((res) => {
-        const auth = res.data;
-        if (!auth) setIsInvalid(true);
-        else props.onAuth(auth);
-      })
-      .catch((err) => console.log(err));
+    if (!isRegister) {
+      axios
+        .get("users?" + searchParam)
+        .then((res) => {
+          handleRes(res);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      const formdata = new FormData();
+
+      formdata.append("username", username)
+      formdata.append("password", password)
+
+      axios
+        .post("users", formdata)
+        .then((res) => {
+          handleRes(res);
+        })
+        .catch((err) => setIsInvalid(true));
+    }
   };
 
   return (
     <>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group
           style={{ padding: "10px 10px" }}
           controlId="formBasicusername"
@@ -63,10 +84,23 @@ const LoginForm = (props) => {
             </Form.Control.Feedback>
           </FloatingLabel>
         </Form.Group>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-around",
+          }}
+        >
+          <Form.Check
+            type="switch"
+            label="Registra"
+            onChange={() => setIsRegister(!isRegister)}
+          ></Form.Check>
+          <Button variant="primary" type="submit">
+            {isRegister ? "Registra" : "Login"}
+          </Button>
+        </div>
       </Form>
-      <Button onClick={() => handleLogin()} variant="primary" type="submit">
-        Login
-      </Button>
     </>
   );
 };
