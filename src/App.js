@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.scss";
+import GelidForm from "./components/GelidForm/GelidForm";
+import BaseLayout from "./containers/BaseLayout/BaseLayout";
 import LoginPage from "./containers/LoginPage/LoginPage";
-import MainContainer from "./containers/MainContainer";
+import MainContainer from "./containers/MainContainer/MainContainer";
 
 function App(props) {
   const [isAuth, setIsAuth] = useState(false);
@@ -21,10 +23,25 @@ function App(props) {
   return (
     <Routes>
       {isAuth ? (
-        <Route path="/home" element={<MainContainer videoId={1} />} />
+        <Route
+          path="/home"
+          element={
+            <BaseLayout>
+              <MainContainer videoId={1} />
+            </BaseLayout>
+          }
+        />
       ) : (
         <Route path="/login" element={<LoginPage onAuth={handleAuth} />} />
       )}
+      <Route
+        path="/form"
+        element={
+          <BaseLayout>
+            <GelidForm />
+          </BaseLayout>
+        }
+      />
       <Route path="*" element={<Navigate to={redirect} replace />} />
     </Routes>
   );

@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import Sidebar from "../components/Sidebar/Sidebar";
-import Topbar from "../components/Topbar/Topbar";
+import Sidebar from "../../components/Sidebar/Sidebar";
 import classes from "./MainContainer.module.css";
-import SegmentCard from "../components/SegmentCard/SegmentCard";
-import axios from "../axios";
-import Backdrop from "../components/Backdrop/Backdrop";
-import ClusterContainer from "../components/ClusterContainer/ClusterContainer";
+import SegmentCard from "../../components/SegmentCard/SegmentCard";
+import axios from "../../axios";
+import Backdrop from "../../components/Backdrop/Backdrop";
+import ClusterContainer from "../../components/ClusterContainer/ClusterContainer";
+import VideoOffCanvas from "../../components/VideoOffCanvas/VideoOffCanvas";
 
 const MainContainer = (props) => {
   const [sidebarElements, setSidebarElements] = useState([]);
@@ -39,7 +39,9 @@ const MainContainer = (props) => {
         `video/${props.videoId}/segments?contextId=${contextId}&issueType=${issueType}`
       )
       .then((res) => {
-        setClusters(groupBy(res.data, (seg) => seg.issue ? seg.issue.id : -1));
+        setClusters(
+          groupBy(res.data, (seg) => (seg.issue ? seg.issue.id : -1))
+        );
       })
       .catch((err) => console.log(err));
   };
@@ -74,11 +76,8 @@ const MainContainer = (props) => {
   }
 
   return (
-    <div className={classes.Container}>
+    <>
       {clusterSegments}
-      <div className={classes.Topbar}>
-        <Topbar />
-      </div>
       <div className={classes.Sidebar}>
         <Sidebar
           videoId={props.videoId}
@@ -87,7 +86,7 @@ const MainContainer = (props) => {
         />
       </div>
       <div className={classes.SegmentsContainer}>{segmentsElement}</div>
-    </div>
+    </>
   );
 };
 

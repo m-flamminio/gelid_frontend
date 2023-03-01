@@ -1,0 +1,9 @@
+.Container {
+    display: grid;
+    grid-template: 3.5rem 93vh  / 1fr 5fr;
+}
+
+.Topbar {
+    grid-row: 1;
+    grid-column: 1 / 3;
+}
