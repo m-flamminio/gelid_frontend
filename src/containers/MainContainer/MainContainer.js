@@ -75,17 +75,19 @@ const MainContainer = (props) => {
     );
   }
 
+  const style = {display: props.showForm ? "none" : "unset"}
+
   return (
     <>
       {clusterSegments}
-      <div className={classes.Sidebar}>
+      <div className={classes.Sidebar} style={style}>
         <Sidebar
           videoId={props.videoId}
           updateSegments={updateSegments}
           elements={sidebarElements}
         />
       </div>
-      <div className={classes.SegmentsContainer}>{segmentsElement}</div>
+      <div className={classes.SegmentsContainer} style={style}>{segmentsElement}</div>
     </>
   );
 };

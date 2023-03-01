@@ -26,9 +26,7 @@ function App(props) {
         <Route
           path="/home"
           element={
-            <BaseLayout>
-              <MainContainer videoId={1} />
-            </BaseLayout>
+            <BaseLayout showForm={false} />
           }
         />
       ) : (
@@ -37,9 +35,7 @@ function App(props) {
       <Route
         path="/form"
         element={
-          <BaseLayout>
-            <GelidForm />
-          </BaseLayout>
+          <BaseLayout showForm={true}/>
         }
       />
       <Route path="*" element={<Navigate to={redirect} replace />} />

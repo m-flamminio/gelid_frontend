@@ -1,6 +1,7 @@
 import classes from "./BaseLayout.module.css";
 import Topbar from "../../components/Topbar/Topbar";
 import MainContainer from "../MainContainer/MainContainer";
+import GelidForm from "../../components/GelidForm/GelidForm";
 
 const BaseLayout = (props) => {
   return (
@@ -8,7 +9,8 @@ const BaseLayout = (props) => {
       <div className={classes.Topbar}>
         <Topbar />
       </div>
-        {props.children}
+        <MainContainer videoId={1} {...props}/>
+        <GelidForm {...props} />
     </div>
   );
 };
