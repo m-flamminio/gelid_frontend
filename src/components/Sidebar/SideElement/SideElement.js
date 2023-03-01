@@ -3,6 +3,7 @@ import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import AccordionItem from "react-bootstrap/esm/AccordionItem";
 import { useState, useEffect } from "react";
 import axios from "../../../axios";
+import iconMap from "./SideElementIcons";
 
 const SideElement = (props) => {
   const showCard = useAccordionButton(props.id);
@@ -17,7 +18,7 @@ const SideElement = (props) => {
 
   const issueItems = issues.map((issue, index) => (
     <ListGroup.Item style={{ cursor: "pointer" }} key={index} onClick={() => props.updateSegments(props.id, issue.issueType)} >
-      {issue.issueType}
+      {iconMap.get(issue.issueType)}{issue.issueType}
     </ListGroup.Item>
   ));
 

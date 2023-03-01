@@ -1,5 +1,6 @@
 import { Button } from "react-bootstrap";
 import classes from "./SegmentCard.module.css";
+import {ImYoutube2} from 'react-icons/im'
 
 const SegmentCard = (props) => {
 
@@ -26,7 +27,7 @@ const SegmentCard = (props) => {
               window.open(props.video.url + "&t=" + props.startSecond, "_blank")
             }
           >
-            Url
+            Guarda su <ImYoutube2 style={{width: "3rem"}}/>
           </li>
           <li>Secondo inizio: {props.startSecond} s</li>
           <li>Secondo fine: {props.endSecond} s</li>
