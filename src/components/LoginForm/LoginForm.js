@@ -16,9 +16,7 @@ const LoginForm = (props) => {
     else props.onAuth(auth);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
+  const handleRequests = (username, password) => {
     const searchParam = new URLSearchParams({
       username: username,
       password: password,
@@ -34,8 +32,8 @@ const LoginForm = (props) => {
     } else {
       const formdata = new FormData();
 
-      formdata.append("username", username)
-      formdata.append("password", password)
+      formdata.append("username", username);
+      formdata.append("password", password);
 
       axios
         .post("users", formdata)
@@ -44,6 +42,20 @@ const LoginForm = (props) => {
         })
         .catch((err) => setIsInvalid(true));
     }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const textEncoder = new TextEncoder();
+    const encodedPassw = textEncoder.encode(password);
+    window.crypto.subtle.digest("SHA-256", encodedPassw).then((hashBuffer) => {
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hash = hashArray
+        .map((item) => item.toString(16).padStart(2, "0"))
+        .join("");
+      handleRequests(username, hash);
+    });
   };
 
   return (
