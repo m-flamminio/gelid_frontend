@@ -1,14 +1,20 @@
 import { Button } from "react-bootstrap";
 import classes from "./SegmentCard.module.css";
-import {ImYoutube2} from 'react-icons/im'
+import { ImYoutube2 } from "react-icons/im";
 
 const SegmentCard = (props) => {
-
-  let clusterButton = null
+  let clusterButton = null;
   if (props.showCluster && props.issue)
-    clusterButton = <Button className={classes.Button} onClick={() => props.showCluster(props.issue.id)}>Visualizza cluster</Button>
+    clusterButton = (
+      <Button
+        className={classes.Button}
+        onClick={() => props.showCluster(props.issue.id)}
+      >
+        Visualizza altri simili
+      </Button>
+    );
 
-  let title = props.issue ? props.issue.name : "Bug"
+  let title = props.issue ? props.issue.name : "Bug";
 
   return (
     <div className={classes.Card}>
@@ -21,18 +27,20 @@ const SegmentCard = (props) => {
         ></video>
         <ul className={classes.Infos}>
           <li>Origine: {props.video.title}</li>
-          <li
-            style={{ cursor: "pointer" }}
-            onClick={() =>
-              window.open(props.video.url + "&t=" + props.startSecond, "_blank")
-            }
-          >
-            Guarda su <ImYoutube2 style={{width: "3rem"}}/>
-          </li>
           <li>Secondo inizio: {props.startSecond} s</li>
           <li>Secondo fine: {props.endSecond} s</li>
         </ul>
-        {clusterButton}
+        <div className={classes.Buttons}>
+          {clusterButton}
+          <Button
+            onClick={() =>
+              window.open(props.video.url + "&t=" + props.startSecond, "_blank")
+            }
+            variant="danger"
+          >
+            Guarda su <ImYoutube2 style={{ width: "3rem" }} />
+          </Button>
+        </div>
       </div>
     </div>
   );

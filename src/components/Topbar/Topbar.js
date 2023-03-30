@@ -7,7 +7,7 @@ const Topbar = () => {
   const navigate = useNavigate();
 
   return (
-    <Navbar variant="dark" bg="dark">
+    <Navbar style={{justifyContent: "center"}} variant="dark" bg="dark">
       <Nav
         activeKey={activeLink}
         onSelect={(selectedKey) => {
